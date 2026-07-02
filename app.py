@@ -83,17 +83,27 @@ def main() -> None:
         "Four compensating pillars are weighted, then scaled by a Reliability "
         "guardrail so unreliable work can't buy its way to the top."
     )
+    help_importance = ("Percentile of Sum over merged PRs of "
+                       "(issue reactions + 0.5*comments + 0.3*days-open) * (2 if bug/incident).")
+    help_meaningful = ("Percentile blend of how many PRs the team engaged with (linked to an issue or "
+                       "above-median reviews/reactions) and what fraction of their PRs cleared that bar.")
+    help_influence = ("Percentile of 0.4*reviews-given-to-others + 0.35*distinct-teammates-helped + "
+                      "0.25*others'-issues-closed, minus a penalty for only closing your own issues.")
+    help_knowledge = ("Percentile blend of 0.45*distinct approvers of their PRs + 0.35*betweenness "
+                      "centrality + 0.20*distinct people they review, in the review graph.")
     weights = {}
-    weights["importance"] = st.sidebar.slider("Problem Importance", 0.0, 1.0, float(defaults["importance"]), 0.02)
-    weights["meaningful"] = st.sidebar.slider("Meaningful Work", 0.0, 1.0, float(defaults["meaningful"]), 0.02)
-    weights["influence"] = st.sidebar.slider("Helping Others", 0.0, 1.0, float(defaults["influence"]), 0.02)
-    weights["knowledge"] = st.sidebar.slider("Knowledge Sharing", 0.0, 1.0, float(defaults["knowledge"]), 0.02)
+    weights["importance"] = st.sidebar.slider("Problem Importance", 0.0, 1.0, float(defaults["importance"]), 0.02, help=help_importance)
+    weights["meaningful"] = st.sidebar.slider("Meaningful Work", 0.0, 1.0, float(defaults["meaningful"]), 0.02, help=help_meaningful)
+    weights["influence"] = st.sidebar.slider("Helping Others", 0.0, 1.0, float(defaults["influence"]), 0.02, help=help_influence)
+    weights["knowledge"] = st.sidebar.slider("Knowledge Sharing", 0.0, 1.0, float(defaults["knowledge"]), 0.02, help=help_knowledge)
     total = sum(weights.values()) or 1.0
     weights = {k: v / total for k, v in weights.items()}  # normalize so bars compare
     st.sidebar.markdown("---")
     st.sidebar.caption(
-        f"Reliability guardrail: score x ({g['floor']} + {g['span']} x reliability). "
-        "Reliability is a multiplier, not an additive pillar."
+        f"Reliability guardrail: score x ({g['floor']} + {g['span']} x reliability/100). "
+        "Reliability = percentile blend of 0.45*(low revert rate) + 0.35*(CI passes first push) + "
+        "0.20*(tests included). It is a multiplier, not an additive pillar, so unreliable work "
+        "can't buy its way to the top."
     )
 
     # ---- recompute ranking -----------------------------------------------
@@ -111,19 +121,26 @@ def main() -> None:
         "Impact is modeled from what the team engages with - not lines of code or commit counts."
     )
 
-    with st.expander("How impact is measured"):
+    with st.expander("How impact is measured (score = 0-100 per pillar)"):
         st.markdown(
-            """
-- **Problem Importance** - contributions weighted by the importance of the problem solved
-  (reactions/comments on the issues they closed, how long the pain existed, bug/incident labels).
-- **Meaningful Work** - work the team actually engages with, with a ratio penalty on vanity volume.
-- **Helping Others** - substantive reviews given to *other people's* PRs, distinct teammates helped,
-  others' issues resolved.
-- **Reliability** *(guardrail multiplier)* - low revert rate, CI first-pass, tests present.
-- **Knowledge Sharing** - reviewer diversity on their PRs and centrality in the review network.
+            f"""
+**Every pillar is a percentile rank across the {len(data['engineers'])} eligible engineers**, so a
+score of 90 means "ahead of 90% of active engineers on that dimension" and 50 is the median. Raw
+counts are log-damped first so a few outliers don't flatten everyone. One line each:
 
-Each pillar is a 0-100 percentile across eligible engineers. Adjust the weights in the sidebar to
-see the ranking respond live.
+- **Problem Importance** = percentile of the total importance of problems solved =
+  Sum over merged PRs of `(issue reactions + 0.5*comments + 0.3*days-open) * (2 if bug/incident)`.
+- **Meaningful Work** = percentile blend of *how many* PRs the team engaged with (linked to an issue,
+  or above-median reviews/reactions) and *what fraction* of their PRs cleared that bar (anti-vanity).
+- **Helping Others** = percentile of `0.4*reviews-given-to-others + 0.35*distinct-teammates-helped +
+  0.25*others'-issues-closed`, minus a penalty for only closing your own issues.
+- **Reliability** = percentile blend of `0.45*(low revert rate) + 0.35*(CI passes first push) +
+  0.20*(tests included)`; applied as a x0.7-1.0 *multiplier*, not an added pillar.
+- **Knowledge Sharing** = percentile blend of `0.45*distinct approvers of their PRs +
+  0.35*betweenness centrality + 0.20*distinct people they review` in the review graph.
+
+**Final score** = `(0.32*Importance + 0.26*Meaningful + 0.26*Helping + 0.16*Knowledge) *
+(0.7 + 0.3*Reliability/100)`. Adjust the weights in the sidebar to see the ranking respond live.
             """
         )
 
