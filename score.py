@@ -246,6 +246,7 @@ def build() -> dict:
                     "text": f"Closed #{top_issue[0]} ({top_issue[2]} reactions, open {top_issue[3]:.0f}d)",
                     "value": pr_importance,
                     "pr": pr["number"],
+                    "issue": top_issue[0],
                 })
 
         # -- P2 Meaningful

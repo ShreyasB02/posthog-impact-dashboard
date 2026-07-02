@@ -2,8 +2,8 @@
   "meta": {
     "repo": "PostHog/posthog",
     "lookback_days": 90,
-    "window_start": "2026-04-03T14:14:46.540003+00:00",
-    "fetched_at": "2026-07-02T14:15:02.471298+00:00",
+    "window_start": "2026-04-03T13:47:17.979590+00:00",
+    "fetched_at": "2026-07-02T14:15:22.510002+00:00",
     "counts": {
       "pull_requests": 13839,
       "issues": 607
@@ -51,19 +51,22 @@
           "type": "importance",
           "text": "Closed #55532 (0 reactions, open 65d)",
           "value": 21.524708333333333,
-          "pr": 64439
+          "pr": 64439,
+          "issue": 55532
         },
         {
           "type": "importance",
           "text": "Closed #55412 (0 reactions, open 42d)",
           "value": 14.000034722222223,
-          "pr": 57145
+          "pr": 57145,
+          "issue": 55412
         },
         {
           "type": "importance",
           "text": "Closed #57043 (0 reactions, open 40d)",
           "value": 12.54363888888889,
-          "pr": 61026
+          "pr": 61026,
+          "issue": 57043
         }
       ],
       "impact": 77.77
@@ -99,19 +102,22 @@
           "type": "importance",
           "text": "Closed #3160 (0 reactions, open 54d)",
           "value": 17.672506944444443,
-          "pr": 55480
+          "pr": 55480,
+          "issue": 3160
         },
         {
           "type": "importance",
           "text": "Closed #49837 (0 reactions, open 44d)",
           "value": 13.599784722222221,
-          "pr": 54663
+          "pr": 54663,
+          "issue": 49837
         },
         {
           "type": "importance",
           "text": "Closed #55078 (0 reactions, open 6d)",
           "value": 1.8284305555555553,
-          "pr": 55681
+          "pr": 55681,
+          "issue": 55078
         }
       ],
       "impact": 77.4
@@ -147,7 +153,8 @@
           "type": "importance",
           "text": "Closed #55210 (6 reactions, open 33d)",
           "value": 20.296010416666668,
-          "pr": 59718
+          "pr": 59718,
+          "issue": 55210
         }
       ],
       "impact": 76.76
@@ -183,7 +190,8 @@
           "type": "importance",
           "text": "Closed #55075 (0 reactions, open 46d)",
           "value": 14.383274305555554,
-          "pr": 56742
+          "pr": 56742,
+          "issue": 55075
         }
       ],
       "impact": 74.7
@@ -220,13 +228,15 @@
           "type": "importance",
           "text": "Closed #18673 (1 reactions, open 895d)",
           "value": 271.9534236111111,
-          "pr": 56432
+          "pr": 56432,
+          "issue": 18673
         },
         {
           "type": "importance",
           "text": "Closed #54406 (0 reactions, open 57d)",
           "value": 18.14645833333333,
-          "pr": 62652
+          "pr": 62652,
+          "issue": 54406
         }
       ],
       "impact": 72.47
@@ -261,19 +271,22 @@
           "type": "importance",
           "text": "Closed #55612 (0 reactions, open 36d)",
           "value": 10.833972222222222,
-          "pr": 55620
+          "pr": 55620,
+          "issue": 55612
         },
         {
           "type": "importance",
           "text": "Closed #60339 (0 reactions, open 20d)",
           "value": 6.971472222222222,
-          "pr": 61940
+          "pr": 61940,
+          "issue": 60339
         },
         {
           "type": "importance",
           "text": "Closed #53457 (0 reactions, open 17d)",
           "value": 5.148788194444445,
-          "pr": 55142
+          "pr": 55142,
+          "issue": 53457
         }
       ],
       "impact": 71.44
@@ -310,19 +323,22 @@
           "type": "importance",
           "text": "Closed #49776 (0 reactions, open 35d)",
           "value": 11.526281249999998,
-          "pr": 53660
+          "pr": 53660,
+          "issue": 49776
         },
         {
           "type": "importance",
           "text": "Closed #61021 (0 reactions, open 7d)",
           "value": 2.993392361111111,
-          "pr": 61060
+          "pr": 61060,
+          "issue": 61021
         },
         {
           "type": "importance",
           "text": "Closed #61030 (0 reactions, open 0d)",
           "value": 0.6316076388888889,
-          "pr": 61054
+          "pr": 61054,
+          "issue": 61030
         }
       ],
       "impact": 70.47
@@ -358,19 +374,22 @@
           "type": "importance",
           "text": "Closed #57017 (0 reactions, open 27d)",
           "value": 9.063951388888889,
-          "pr": 60075
+          "pr": 60075,
+          "issue": 57017
         },
         {
           "type": "importance",
           "text": "Closed #57026 (0 reactions, open 28d)",
           "value": 8.366499999999998,
-          "pr": 60250
+          "pr": 60250,
+          "issue": 57026
         },
         {
           "type": "importance",
           "text": "Closed #57026 (0 reactions, open 28d)",
           "value": 8.366499999999998,
-          "pr": 59935
+          "pr": 59935,
+          "issue": 57026
         }
       ],
       "impact": 69.72
@@ -404,7 +423,8 @@
           "type": "importance",
           "text": "Closed #32912 (4 reactions, open 385d)",
           "value": 120.91806249999999,
-          "pr": 62669
+          "pr": 62669,
+          "issue": 32912
         }
       ],
       "impact": 69.55
@@ -440,7 +460,8 @@
           "type": "importance",
           "text": "Closed #53912 (0 reactions, open 13d)",
           "value": 3.9167604166666665,
-          "pr": 54140
+          "pr": 54140,
+          "issue": 53912
         }
       ],
       "impact": 68.53
@@ -474,7 +495,8 @@
           "type": "importance",
           "text": "Closed #54661 (0 reactions, open 0d)",
           "value": 0.5,
-          "pr": 59486
+          "pr": 59486,
+          "issue": 54661
         }
       ],
       "impact": 68.0
@@ -511,19 +533,22 @@
           "type": "importance",
           "text": "Closed #20821 (0 reactions, open 760d)",
           "value": 229.10206597222222,
-          "pr": 53807
+          "pr": 53807,
+          "issue": 20821
         },
         {
           "type": "importance",
           "text": "Closed #24037 (0 reactions, open 648d)",
           "value": 195.86067013888888,
-          "pr": 54600
+          "pr": 54600,
+          "issue": 24037
         },
         {
           "type": "importance",
           "text": "Closed #40755 (0 reactions, open 158d)",
           "value": 48.90729861111111,
-          "pr": 53502
+          "pr": 53502,
+          "issue": 40755
         }
       ],
       "impact": 67.63
@@ -557,13 +582,15 @@
           "type": "importance",
           "text": "Closed #60375 (0 reactions, open 30d)",
           "value": 11.986934027777776,
-          "pr": 65929
+          "pr": 65929,
+          "issue": 60375
         },
         {
           "type": "importance",
           "text": "Closed #55626 (0 reactions, open 2d)",
           "value": 1.559798611111111,
-          "pr": 55747
+          "pr": 55747,
+          "issue": 55626
         }
       ],
       "impact": 66.71
@@ -599,7 +626,8 @@
           "type": "importance",
           "text": "Closed #52607 (0 reactions, open 8d)",
           "value": 3.9367743055555553,
-          "pr": 53386
+          "pr": 53386,
+          "issue": 52607
         }
       ],
       "impact": 66.21
@@ -635,7 +663,8 @@
           "type": "importance",
           "text": "Closed #57371 (0 reactions, open 24d)",
           "value": 7.666246527777778,
-          "pr": 60032
+          "pr": 60032,
+          "issue": 57371
         }
       ],
       "impact": 65.97
@@ -669,7 +698,8 @@
           "type": "importance",
           "text": "Closed #25058 (2 reactions, open 0d)",
           "value": 10.0,
-          "pr": 65197
+          "pr": 65197,
+          "issue": 25058
         }
       ],
       "impact": 64.9
@@ -704,19 +734,22 @@
           "type": "importance",
           "text": "Closed #57939 (0 reactions, open 0d)",
           "value": 0.5,
-          "pr": 57760
+          "pr": 57760,
+          "issue": 57939
         },
         {
           "type": "importance",
           "text": "Closed #57939 (0 reactions, open 0d)",
           "value": 0.5,
-          "pr": 57759
+          "pr": 57759,
+          "issue": 57939
         },
         {
           "type": "importance",
           "text": "Closed #57939 (0 reactions, open 0d)",
           "value": 0.5,
-          "pr": 57758
+          "pr": 57758,
+          "issue": 57939
         }
       ],
       "impact": 64.69
@@ -750,7 +783,8 @@
           "type": "importance",
           "text": "Closed #48179 (7 reactions, open 125d)",
           "value": 48.427086805555554,
-          "pr": 59001
+          "pr": 59001,
+          "issue": 48179
         }
       ],
       "impact": 63.39
@@ -784,13 +818,15 @@
           "type": "importance",
           "text": "Closed #43384 (4 reactions, open 190d)",
           "value": 63.03619097222222,
-          "pr": 60212
+          "pr": 60212,
+          "issue": 43384
         },
         {
           "type": "importance",
           "text": "Closed #41812 (1 reactions, open 139d)",
           "value": 46.20450694444444,
-          "pr": 53333
+          "pr": 53333,
+          "issue": 41812
         }
       ],
       "impact": 63.16
@@ -824,19 +860,22 @@
           "type": "importance",
           "text": "Closed #43772 (0 reactions, open 138d)",
           "value": 41.40800694444444,
-          "pr": 54550
+          "pr": 54550,
+          "issue": 43772
         },
         {
           "type": "importance",
           "text": "Closed #45564 (0 reactions, open 104d)",
           "value": 31.72792708333333,
-          "pr": 54386
+          "pr": 54386,
+          "issue": 45564
         },
         {
           "type": "importance",
           "text": "Closed #45565 (0 reactions, open 104d)",
           "value": 31.227999999999998,
-          "pr": 54544
+          "pr": 54544,
+          "issue": 45565
         }
       ],
       "impact": 61.59
@@ -872,13 +911,15 @@
           "type": "importance",
           "text": "Closed #55051 (0 reactions, open 10d)",
           "value": 3.50390625,
-          "pr": 56210
+          "pr": 56210,
+          "issue": 55051
         },
         {
           "type": "importance",
           "text": "Closed #59344 (0 reactions, open 1d)",
           "value": 0.8092048611111111,
-          "pr": 59395
+          "pr": 59395,
+          "issue": 59344
         }
       ],
       "impact": 60.0
@@ -915,19 +956,22 @@
           "type": "importance",
           "text": "Closed #44364 (0 reactions, open 104d)",
           "value": 31.723781250000002,
-          "pr": 54104
+          "pr": 54104,
+          "issue": 44364
         },
         {
           "type": "importance",
           "text": "Closed #54035 (0 reactions, open 27d)",
           "value": 11.548118055555555,
-          "pr": 54359
+          "pr": 54359,
+          "issue": 54035
         },
         {
           "type": "importance",
           "text": "Closed #2 (0 reactions, open 22d)",
           "value": 7.044979166666666,
-          "pr": 66097
+          "pr": 66097,
+          "issue": 2
         }
       ],
       "impact": 59.44
@@ -964,19 +1008,22 @@
           "type": "importance",
           "text": "Closed #56083 (1 reactions, open 62d)",
           "value": 19.522163194444442,
-          "pr": 61719
+          "pr": 61719,
+          "issue": 56083
         },
         {
           "type": "importance",
           "text": "Closed #55404 (0 reactions, open 65d)",
           "value": 19.429145833333333,
-          "pr": 63057
+          "pr": 63057,
+          "issue": 55404
         },
         {
           "type": "importance",
           "text": "Closed #63155 (0 reactions, open 13d)",
           "value": 3.797333333333333,
-          "pr": 65280
+          "pr": 65280,
+          "issue": 63155
         }
       ],
       "impact": 59.03
@@ -1011,7 +1058,8 @@
           "type": "importance",
           "text": "Closed #1 (0 reactions, open 27d)",
           "value": 17.794975694444446,
-          "pr": 60101
+          "pr": 60101,
+          "issue": 1
         }
       ],
       "impact": 57.79
@@ -1102,7 +1150,8 @@
           "type": "importance",
           "text": "Closed #57340 (0 reactions, open 4d)",
           "value": 1.0980520833333332,
-          "pr": 57342
+          "pr": 57342,
+          "issue": 57340
         }
       ],
       "impact": 57.55
@@ -1389,7 +1438,8 @@
           "type": "importance",
           "text": "Closed #65026 (0 reactions, open 4d)",
           "value": 1.252486111111111,
-          "pr": 65340
+          "pr": 65340,
+          "issue": 65026
         }
       ],
       "impact": 53.32
@@ -1450,7 +1500,8 @@
           "type": "importance",
           "text": "Closed #59403 (0 reactions, open 0d)",
           "value": 0.5,
-          "pr": 60097
+          "pr": 60097,
+          "issue": 59403
         }
       ],
       "impact": 52.54
@@ -1567,7 +1618,8 @@
           "type": "importance",
           "text": "Closed #6 (0 reactions, open 2d)",
           "value": 1.1281527777777778,
-          "pr": 65178
+          "pr": 65178,
+          "issue": 6
         }
       ],
       "impact": 51.44
@@ -1684,13 +1736,15 @@
           "type": "importance",
           "text": "Closed #55610 (0 reactions, open 49d)",
           "value": 16.654069444444445,
-          "pr": 61421
+          "pr": 61421,
+          "issue": 55610
         },
         {
           "type": "importance",
           "text": "Closed #57572 (0 reactions, open 36d)",
           "value": 11.225041666666668,
-          "pr": 61486
+          "pr": 61486,
+          "issue": 57572
         }
       ],
       "impact": 50.27
@@ -1754,7 +1808,8 @@
           "type": "importance",
           "text": "Closed #53467 (0 reactions, open 0d)",
           "value": 1.0,
-          "pr": 53491
+          "pr": 53491,
+          "issue": 53467
         }
       ],
       "impact": 49.61
@@ -2010,7 +2065,8 @@
           "type": "importance",
           "text": "Closed #60559 (0 reactions, open 0d)",
           "value": 0.5,
-          "pr": 60666
+          "pr": 60666,
+          "issue": 60559
         }
       ],
       "impact": 46.3
@@ -2099,19 +2155,22 @@
           "type": "importance",
           "text": "Closed #53908 (0 reactions, open 18d)",
           "value": 5.365322916666667,
-          "pr": 53967
+          "pr": 53967,
+          "issue": 53908
         },
         {
           "type": "importance",
           "text": "Closed #54260 (0 reactions, open 2d)",
           "value": 0.6276701388888889,
-          "pr": 54619
+          "pr": 54619,
+          "issue": 54260
         },
         {
           "type": "importance",
           "text": "Closed #53922 (0 reactions, open 0d)",
           "value": 0.05484722222222222,
-          "pr": 53578
+          "pr": 53578,
+          "issue": 53922
         }
       ],
       "impact": 45.46
@@ -2310,7 +2369,8 @@
           "type": "importance",
           "text": "Closed #17002 (0 reactions, open 0d)",
           "value": 2.0,
-          "pr": 54934
+          "pr": 54934,
+          "issue": 17002
         }
       ],
       "impact": 44.42
@@ -2481,7 +2541,8 @@
           "type": "importance",
           "text": "Closed #45900 (0 reactions, open 0d)",
           "value": 0.5,
-          "pr": 64906
+          "pr": 64906,
+          "issue": 45900
         }
       ],
       "impact": 41.06
@@ -2514,19 +2575,22 @@
           "type": "importance",
           "text": "Closed #65303 (0 reactions, open 9d)",
           "value": 3.20975,
-          "pr": 65375
+          "pr": 65375,
+          "issue": 65303
         },
         {
           "type": "importance",
           "text": "Closed #39135 (0 reactions, open 0d)",
           "value": 2.0,
-          "pr": 65981
+          "pr": 65981,
+          "issue": 39135
         },
         {
           "type": "importance",
           "text": "Closed #63823 (1 reactions, open 0d)",
           "value": 1.5,
-          "pr": 63880
+          "pr": 63880,
+          "issue": 63823
         }
       ],
       "impact": 40.6
@@ -2861,19 +2925,22 @@
           "type": "importance",
           "text": "Closed #30932 (0 reactions, open 440d)",
           "value": 133.5060347222222,
-          "pr": 55753
+          "pr": 55753,
+          "issue": 30932
         },
         {
           "type": "importance",
           "text": "Closed #63662 (0 reactions, open 14d)",
           "value": 4.208666666666666,
-          "pr": 65356
+          "pr": 65356,
+          "issue": 63662
         },
         {
           "type": "importance",
           "text": "Closed #62009 (0 reactions, open 0d)",
           "value": 1.0,
-          "pr": 62113
+          "pr": 62113,
+          "issue": 62009
         }
       ],
       "impact": 36.25
@@ -2961,7 +3028,8 @@
           "type": "importance",
           "text": "Closed #32559 (0 reactions, open 0d)",
           "value": 4.5,
-          "pr": 62230
+          "pr": 62230,
+          "issue": 32559
         }
       ],
       "impact": 35.2
@@ -3149,7 +3217,8 @@
           "type": "importance",
           "text": "Closed #2417 (0 reactions, open 0d)",
           "value": 0.04192013888888888,
-          "pr": 60499
+          "pr": 60499,
+          "issue": 2417
         }
       ],
       "impact": 33.33
@@ -3276,7 +3345,8 @@
           "type": "importance",
           "text": "Closed #49740 (0 reactions, open 0d)",
           "value": 1.0,
-          "pr": 59142
+          "pr": 59142,
+          "issue": 49740
         }
       ],
       "impact": 32.39
@@ -3549,7 +3619,8 @@
           "type": "importance",
           "text": "Closed #62801 (0 reactions, open 1d)",
           "value": 0.7383819444444444,
-          "pr": 62792
+          "pr": 62792,
+          "issue": 62801
         }
       ],
       "impact": 28.48
@@ -13634,5 +13705,5 @@
       }
     ]
   },
-  "generated_at": "2026-07-02T14:15:12.805877+00:00"
+  "generated_at": "2026-07-02T19:34:24.517099+00:00"
 }

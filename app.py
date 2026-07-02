@@ -148,27 +148,48 @@ see the ranking respond live.
     with left:
         st.subheader("Why they rank where they do")
         fig = go.Figure()
-        logins = [r["login"] for r in reversed(top5)]
+        ordered = list(reversed(top5))
+        logins = [r["login"] for r in ordered]
+        # guardrail multiplier per engineer: floor + span * reliability/100
+        mult = [g["floor"] + g["span"] * (r["pillars"]["reliability"] / 100.0) for r in ordered]
+        # colored segments are each pillar's weighted contribution AFTER the
+        # reliability multiplier, so the solid bar length == the final Impact score.
         for key in ("importance", "meaningful", "influence", "knowledge"):
             fig.add_trace(go.Bar(
                 y=logins,
-                x=[weights[key] * r["pillars"][key] for r in reversed(top5)],
+                x=[weights[key] * r["pillars"][key] * m for r, m in zip(ordered, mult)],
                 name=PILLAR_LABELS[key],
                 orientation="h",
                 marker_color=PILLAR_COLORS[key],
                 hovertemplate="%{x:.1f} pts<extra>" + PILLAR_LABELS[key] + "</extra>",
             ))
+        # faded tail = points removed by the reliability guardrail
+        base_full = [
+            sum(weights[k] * r["pillars"][k] for k in ("importance", "meaningful", "influence", "knowledge"))
+            for r in ordered
+        ]
+        drag = [bf * (1 - m) for bf, m in zip(base_full, mult)]
+        fig.add_trace(go.Bar(
+            y=logins,
+            x=drag,
+            name="Reliability drag",
+            orientation="h",
+            marker=dict(color="rgba(214,39,40,0.28)", line=dict(color="rgba(214,39,40,0.6)", width=1)),
+            customdata=[f"x{m:.2f} (reliability {r['pillars']['reliability']:.0f}/100)" for r, m in zip(ordered, mult)],
+            hovertemplate="-%{x:.1f} pts removed by guardrail %{customdata}<extra></extra>",
+        ))
         fig.update_layout(
             barmode="stack",
             height=320,
             margin=dict(l=10, r=10, t=10, b=10),
             legend=dict(orientation="h", yanchor="bottom", y=1.02),
-            xaxis_title="Weighted contribution to impact score",
+            xaxis_title="Impact score (solid) + points removed by reliability guardrail (faded)",
         )
         st.plotly_chart(fig, use_container_width=True)
         st.caption(
-            "Bar segments are each pillar's *weighted* contribution. "
-            "Reliability is applied as a multiplier, so it shapes total length rather than a segment."
+            "Solid segments are each pillar's weighted contribution; their total equals the Impact "
+            "score on the cards. The faded red tail shows points the reliability guardrail removed - "
+            "a long tail (e.g. reverts, failing CI) is why a high-output engineer can still rank lower."
         )
 
     # ---- Highlights for selected engineer --------------------------------
@@ -181,11 +202,22 @@ see the ranking respond live.
         c1.metric("Merged PRs", int(raw.get("merged_prs", 0)))
         c2.metric("Reviews given", int(raw.get("reviews_others", 0)))
         c3.metric("Teammates helped", int(raw.get("distinct_authors_helped", 0)))
+        repo = meta["repo"]
         if rec.get("highlights"):
             for h in rec["highlights"]:
-                st.markdown(f"- {h['text']}")
+                links = []
+                if h.get("issue"):
+                    links.append(f"[issue #{h['issue']}](https://github.com/{repo}/issues/{h['issue']})")
+                if h.get("pr"):
+                    links.append(f"[PR #{h['pr']}](https://github.com/{repo}/pull/{h['pr']})")
+                suffix = "  (" + ", ".join(links) + ")" if links else ""
+                st.markdown(f"- {h['text']}{suffix}")
         else:
             st.caption("No linked-issue highlights in window; impact driven by reviews/reliability.")
+        st.markdown(
+            f"[Browse all of @{sel}'s merged PRs on GitHub]"
+            f"(https://github.com/{repo}/pulls?q=is%3Apr+author%3A{sel}+is%3Amerged)"
+        )
 
     # ---- Collaboration network (hero visual) -----------------------------
     st.markdown("---")
