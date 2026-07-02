@@ -1,0 +1,20 @@
+# Secrets
+.env
+
+# Raw API cache (large, regenerable)
+.cache/
+raw_data.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+
+# Cursor internal plan artifact
+plan.md
