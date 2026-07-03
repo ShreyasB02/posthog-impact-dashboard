@@ -66,14 +66,6 @@ streamlit run app.py      # opens the dashboard
 A GitHub personal access token is only needed for `fetch.py`. Create one at
 <https://github.com/settings/tokens>.
 
-## Deploy (Streamlit Community Cloud)
-
-1. Commit the repo **including `scored.json`** (raw data and `.env` are gitignored).
-2. Push to GitHub.
-3. Go to <https://share.streamlit.io>, connect the repo, set the main file to `app.py`, deploy.
-
-No secrets are required in the deployment because the app reads the precomputed `scored.json`.
-
 ## Scope
 
 `fetch.py` pulls all PRs and issues **created** in the last 90 days (ordered by creation date so
