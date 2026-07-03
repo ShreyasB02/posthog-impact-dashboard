@@ -146,6 +146,9 @@ that pillar; 50 is the middle of the pack. Here is what each pillar rewards, in 
 The four contribution pillars are combined into one score, which is then adjusted by the Reliability
 safety check. Use the sliders in the sidebar to change how much each pillar counts and watch the
 ranking update live.
+
+Impact Score = ( 0.32*Problem Importance + 0.26*Meaningful Work + 0.26*Helping Others + 0.16*Knowledge Sharing )
+         * (0.7 + 0.3 * Reliability/100)
             """
         )
 
