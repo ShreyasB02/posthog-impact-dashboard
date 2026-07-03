@@ -100,12 +100,11 @@ def main() -> None:
     weights = {k: v / total for k, v in weights.items()}  # normalize so bars compare
     st.sidebar.markdown("---")
     st.sidebar.caption(
-        f"Reliability guardrail: score x ({g['floor']} + {g['span']} x reliability/100). "
+        f"Reliability guardrail: score x ({g['floor']} + {g['span']} x reliability/100). \n " 
         "Reliability = percentile blend of 0.45*(low revert rate) + 0.35*(CI passes first push) + "
-        "0.20*(tests included). It is a multiplier, not an additive pillar, so unreliable work "
-        "can't buy its way to the top."
+        "0.20*(tests included). \n "
+        "It is a multiplier on purpose and not an additive pillar, so unreliable work can't buy its way to the top."
     )
-
     # ---- recompute ranking -----------------------------------------------
     engineers = data["engineers"]
     for rec in engineers:
@@ -121,7 +120,7 @@ def main() -> None:
         "Impact is modeled from what the team engages with - not lines of code or commit counts."
     )
 
-    with st.expander("How impact is measured (score = 0-100 per pillar)"):
+    with st.expander("How impact is measured- The 4 Pillars"):
         st.markdown(
             f"""
 Each pillar is scored from **0 to 100 by ranking every engineer against their peers**
@@ -137,12 +136,12 @@ that pillar; 50 is the middle of the pack. Here is what each pillar rewards, in 
 - **Helping Others** - Do they lift the whole team, not just themselves? We reward giving thoughtful
   code reviews on other people's work, helping many different teammates, and resolving problems that
   someone else raised.
-- **Reliability** - Can the team trust what they ship? We reward work that rarely gets reverted,
-  passes CI on the first try, and comes with tests. This one acts as a safety check that scales the
-  whole score up or down - so someone who ships a lot but frequently breaks things still ranks lower.
 - **Knowledge Sharing** - Do they spread knowledge instead of hoarding it? We reward people whose work
   is reviewed and approved by many different teammates, and who sit at the center of the team's review
   network (connecting people rather than working in a silo).
+- **Reliability** - Can the team trust what they ship? We reward work that rarely gets reverted,
+  passes CI on the first try, and comes with tests. This one acts as a safety check that scales the
+  whole score up or down - so someone who ships a lot but frequently breaks things still ranks lower.
 
 The four contribution pillars are combined into one score, which is then adjusted by the Reliability
 safety check. Use the sliders in the sidebar to change how much each pillar counts and watch the
