@@ -124,23 +124,29 @@ def main() -> None:
     with st.expander("How impact is measured (score = 0-100 per pillar)"):
         st.markdown(
             f"""
-**Every pillar is a percentile rank across the {len(data['engineers'])} eligible engineers**, so a
-score of 90 means "ahead of 90% of active engineers on that dimension" and 50 is the median. Raw
-counts are log-damped first so a few outliers don't flatten everyone. One line each:
+Each pillar is scored from **0 to 100 by ranking every engineer against their peers**
+(all {len(data['engineers'])} active engineers). A 90 means someone is ahead of 90% of the team on
+that pillar; 50 is the middle of the pack. Here is what each pillar rewards, in plain terms:
 
-- **Problem Importance** = percentile of the total importance of problems solved =
-  Sum over merged PRs of `(issue reactions + 0.5*comments + 0.3*days-open) * (2 if bug/incident)`.
-- **Meaningful Work** = percentile blend of *how many* PRs the team engaged with (linked to an issue,
-  or above-median reviews/reactions) and *what fraction* of their PRs cleared that bar (anti-vanity).
-- **Helping Others** = percentile of `0.4*reviews-given-to-others + 0.35*distinct-teammates-helped +
-  0.25*others'-issues-closed`, minus a penalty for only closing your own issues.
-- **Reliability** = percentile blend of `0.45*(low revert rate) + 0.35*(CI passes first push) +
-  0.20*(tests included)`; applied as a x0.7-1.0 *multiplier*, not an added pillar.
-- **Knowledge Sharing** = percentile blend of `0.45*distinct approvers of their PRs +
-  0.35*betweenness centrality + 0.20*distinct people they review` in the review graph.
+- **Problem Importance** - Did they fix things that actually mattered? We look at the issues each
+  person resolved and give more credit when many people had reacted to or commented on the problem,
+  when it had been open and painful for a long time, and when it was tagged as a bug or incident.
+- **Meaningful Work** - Is their work substance, not noise? We count how much of their work the rest
+  of the team engaged with (it closed a real issue or drew real review discussion), and reward people
+  whose work is consistently meaningful rather than padding their PR count.
+- **Helping Others** - Do they lift the whole team, not just themselves? We reward giving thoughtful
+  code reviews on other people's work, helping many different teammates, and resolving problems that
+  someone else raised.
+- **Reliability** - Can the team trust what they ship? We reward work that rarely gets reverted,
+  passes CI on the first try, and comes with tests. This one acts as a safety check that scales the
+  whole score up or down - so someone who ships a lot but frequently breaks things still ranks lower.
+- **Knowledge Sharing** - Do they spread knowledge instead of hoarding it? We reward people whose work
+  is reviewed and approved by many different teammates, and who sit at the center of the team's review
+  network (connecting people rather than working in a silo).
 
-**Final score** = `(0.32*Importance + 0.26*Meaningful + 0.26*Helping + 0.16*Knowledge) *
-(0.7 + 0.3*Reliability/100)`. Adjust the weights in the sidebar to see the ranking respond live.
+The four contribution pillars are combined into one score, which is then adjusted by the Reliability
+safety check. Use the sliders in the sidebar to change how much each pillar counts and watch the
+ranking update live.
             """
         )
 
