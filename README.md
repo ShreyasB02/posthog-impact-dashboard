@@ -73,17 +73,6 @@ pagination terminates deterministically at the window edge). PRs created before 
 inside it are out of scope - a bounded, reproducible definition that avoids the `UPDATED_AT` explosion
 where old PRs get bumped into recency by stray comments.
 
-## Notes / limitations
-
-- **Revert detection** is heuristic (title-based) and sparse (43 reverts across the window). It still
-  works as a penalty: engineers with reverts are visibly pulled down by the Reliability guardrail.
-- **CI first-pass** turned out to be a dense, reliable signal (available for ~99% of merged PRs), so
-  Reliability rests mostly on it plus test presence.
-- **Problem Importance** is concentrated (only engineers who close reacted-to/linked issues score
-  highly) - this is by design; it is meant to be the differentiator for "solved a real problem."
-- The model is transparent and tunable: the dashboard sidebar exposes the pillar weights so an
-  engineering leader can re-rank live and see the methodology respond.
-
 
 ## Web Link:
 https://posthog-dashboard-sbattula.streamlit.app/
