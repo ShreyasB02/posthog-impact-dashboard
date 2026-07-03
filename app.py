@@ -114,7 +114,7 @@ def main() -> None:
     top5 = engineers[:5]
 
     # ---- Header ----------------------------------------------------------
-    st.title("Who moves PostHog forward?")
+    st.title("Posthog Impactful Engineers Dashboard")
     st.caption(
         f"Top engineers in `{meta['repo']}` over the last {meta['lookback_days']} days "
         f"({meta['counts']['pull_requests']} PRs, {meta['counts']['issues']} issues analyzed). "
@@ -236,76 +236,76 @@ counts are log-damped first so a few outliers don't flatten everyone. One line e
             f"(https://github.com/{repo}/pulls?q=is%3Apr+author%3A{sel}+is%3Amerged)"
         )
 
-    # ---- Collaboration network (hero visual) -----------------------------
-    st.markdown("---")
-    st.subheader("The review network: who spreads knowledge")
-    st.caption(
-        "Each edge is a substantive review (reviewer to author). Larger, central nodes review across "
-        "many teammates - the opposite of knowledge hoarding. Top 5 are highlighted."
-    )
-    render_network(data["graph"], {r["login"] for r in top5})
+    # # ---- Collaboration network (hero visual) -----------------------------
+    # st.markdown("---")
+    # st.subheader("The review network: who spreads knowledge")
+    # st.caption(
+    #     "Each edge is a substantive review (reviewer to author). Larger, central nodes review across "
+    #     "many teammates - the opposite of knowledge hoarding. Top 5 are highlighted."
+    # )
+    # render_network(data["graph"], {r["login"] for r in top5})
 
 
-def render_network(graph_data: dict, highlight: set) -> None:
-    edges = graph_data.get("edges", [])
-    nodes = [n["id"] for n in graph_data.get("nodes", [])]
-    if not edges:
-        st.info("Not enough review interactions to render a network.")
-        return
+# def render_network(graph_data: dict, highlight: set) -> None:
+#     edges = graph_data.get("edges", [])
+#     nodes = [n["id"] for n in graph_data.get("nodes", [])]
+#     if not edges:
+#         st.info("Not enough review interactions to render a network.")
+#         return
 
-    G = nx.DiGraph()
-    G.add_nodes_from(nodes)
-    for e in edges:
-        G.add_edge(e["source"], e["target"], weight=e.get("weight", 1))
+#     G = nx.DiGraph()
+#     G.add_nodes_from(nodes)
+#     for e in edges:
+#         G.add_edge(e["source"], e["target"], weight=e.get("weight", 1))
 
-    # keep it legible: drop isolates, cap to most-connected nodes
-    G.remove_nodes_from(list(nx.isolates(G)))
-    if G.number_of_nodes() == 0:
-        st.info("Not enough review interactions to render a network.")
-        return
-    if G.number_of_nodes() > 60:
-        top_nodes = sorted(G.degree(weight="weight"), key=lambda x: x[1], reverse=True)[:60]
-        G = G.subgraph([n for n, _ in top_nodes]).copy()
+#     # keep it legible: drop isolates, cap to most-connected nodes
+#     G.remove_nodes_from(list(nx.isolates(G)))
+#     if G.number_of_nodes() == 0:
+#         st.info("Not enough review interactions to render a network.")
+#         return
+#     if G.number_of_nodes() > 60:
+#         top_nodes = sorted(G.degree(weight="weight"), key=lambda x: x[1], reverse=True)[:60]
+#         G = G.subgraph([n for n, _ in top_nodes]).copy()
 
-    pos = nx.spring_layout(G, k=0.6, seed=42, weight="weight")
-    deg = dict(G.degree(weight="weight"))
+#     pos = nx.spring_layout(G, k=0.6, seed=42, weight="weight")
+#     deg = dict(G.degree(weight="weight"))
 
-    edge_x, edge_y = [], []
-    for u, v in G.edges():
-        x0, y0 = pos[u]
-        x1, y1 = pos[v]
-        edge_x += [x0, x1, None]
-        edge_y += [y0, y1, None]
-    edge_trace = go.Scatter(
-        x=edge_x, y=edge_y, mode="lines",
-        line=dict(width=0.5, color="rgba(150,150,150,0.4)"),
-        hoverinfo="none",
-    )
+#     edge_x, edge_y = [], []
+#     for u, v in G.edges():
+#         x0, y0 = pos[u]
+#         x1, y1 = pos[v]
+#         edge_x += [x0, x1, None]
+#         edge_y += [y0, y1, None]
+#     edge_trace = go.Scatter(
+#         x=edge_x, y=edge_y, mode="lines",
+#         line=dict(width=0.5, color="rgba(150,150,150,0.4)"),
+#         hoverinfo="none",
+#     )
 
-    node_x, node_y, sizes, colors, texts = [], [], [], [], []
-    for n in G.nodes():
-        x, y = pos[n]
-        node_x.append(x)
-        node_y.append(y)
-        sizes.append(8 + 2.2 * deg.get(n, 1))
-        colors.append("#d62728" if n in highlight else "#1f77b4")
-        texts.append(f"{n} (degree {deg.get(n, 0)})")
-    node_trace = go.Scatter(
-        x=node_x, y=node_y, mode="markers+text",
-        text=[n if n in highlight else "" for n in G.nodes()],
-        textposition="top center",
-        hovertext=texts, hoverinfo="text",
-        marker=dict(size=sizes, color=colors, line=dict(width=1, color="white")),
-    )
+#     node_x, node_y, sizes, colors, texts = [], [], [], [], []
+#     for n in G.nodes():
+#         x, y = pos[n]
+#         node_x.append(x)
+#         node_y.append(y)
+#         sizes.append(8 + 2.2 * deg.get(n, 1))
+#         colors.append("#d62728" if n in highlight else "#1f77b4")
+#         texts.append(f"{n} (degree {deg.get(n, 0)})")
+#     node_trace = go.Scatter(
+#         x=node_x, y=node_y, mode="markers+text",
+#         text=[n if n in highlight else "" for n in G.nodes()],
+#         textposition="top center",
+#         hovertext=texts, hoverinfo="text",
+#         marker=dict(size=sizes, color=colors, line=dict(width=1, color="white")),
+#     )
 
-    fig = go.Figure(data=[edge_trace, node_trace])
-    fig.update_layout(
-        height=460, showlegend=False,
-        margin=dict(l=0, r=0, t=0, b=0),
-        xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-        yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-    )
-    st.plotly_chart(fig, use_container_width=True)
+#     fig = go.Figure(data=[edge_trace, node_trace])
+#     fig.update_layout(
+#         height=460, showlegend=False,
+#         margin=dict(l=0, r=0, t=0, b=0),
+#         xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+#         yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+#     )
+#     st.plotly_chart(fig, use_container_width=True)
 
 
 if __name__ == "__main__":
